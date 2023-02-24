@@ -28,7 +28,7 @@
 
 > *nano /etc/netplan/00-installer-config.yaml*
 >
-![config_ip](1.png)
+![config_ip](https://raw.githubusercontent.com/LamTruong-SystemAdmin/Commonly-deployed-services/main/1.png)
 
 -   Bước 2: Apply cấu hình IP mới
 
