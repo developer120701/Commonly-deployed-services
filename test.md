@@ -28,7 +28,6 @@
 
 > *nano /etc/netplan/00-installer-config.yaml*
 >
-![config_ip](https://raw.githubusercontent.com/LamTruong-SystemAdmin/Commonly-deployed-services/main/1.png)
 
 -   Bước 2: Apply cấu hình IP mới
 
@@ -50,7 +49,7 @@
 
 > *apt install build-essential -y*
 
-# HƯỚNG DẪN CÀI ĐẶT DỊCH VỤ []{.mark}3RD PARTY
+# HƯỚNG DẪN CÀI ĐẶT DỊCH VỤ THƯỜNG DÙNG
 
 ## Cài đặt Nginx
 
