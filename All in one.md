@@ -622,7 +622,6 @@
 >
 > *service redis-server restart*
 >
-> ![](media/image2.png){width="6.5in" height="4.038888888888889in"}
 
 ### Redis-sentinel
 
@@ -687,7 +686,6 @@
 >
 > *service redis-sentinel start*
 
-![](media/image3.png){width="6.5in" height="1.3625in"}
 
 ## Cài đặt RabbitMQ
 
@@ -739,9 +737,6 @@
 > *sudo ss -tunelp \| grep 15672* \# Dịch vụ Web sẽ được lắng nghe trên
 > port TCP 15672, nếu tường lửa đang hoạt động, hãy mở cả hai port 5672
 > và 15672
->
-> ![](media/image4.png){width="5.615367454068242in"
-> height="2.771220472440945in"}
 
 -   Bước 5: Copy cookie từ cluster vào các nodes còn lại
 
@@ -762,8 +757,6 @@
 > *sudo rabbitmqctl start_app*
 >
 > *sudo rabbitmqctl cluster_status*
->
-> ![](media/image5.png){width="6.5in" height="2.472916666666667in"}
 
 -   Bước 7: Xóa vhost và user default, tạo vhost /emas và user quản trị
     viên truy cập từ xa quản lý cụm RabbitMQ
@@ -794,9 +787,6 @@
 >
 > #Password: 123
 >
-> ![](media/image6.png){width="4.427701224846894in"
-> height="2.271150481189851in"}
-
 ## Cài đặt Minio
 
 -   Bước 1: Thêm tên server vào file hosts và tải minio từ
