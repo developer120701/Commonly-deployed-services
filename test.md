@@ -28,8 +28,7 @@
 
 > *nano /etc/netplan/00-installer-config.yaml*
 >
-> ![](media/image1.png){width="5.511185476815398in"
-> height="2.489931102362205in"}
+![config_ip](1.png)
 
 -   Bước 2: Apply cấu hình IP mới
 
