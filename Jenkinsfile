@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Build and Clone') {
+        stage('Build') {
             steps{
                 git 'https://github.com/LamTruong-SystemAdmin/Commonly-deployed-services.git'
             }
-            
         }
     }
 }
