@@ -1,0 +1,16 @@
+1. nano /etc/resolv.conf
+
+	nameserver 8.8.8.8
+
+2. sudo apt update && sudo apt install resolvconf
+
+3. sudo systemctl start resolvconf.service && sudo systemctl enable resolvconf.service
+
+4. sudo nano /etc/resolvconf/resolv.conf.d/head
+
+	nameserver 8.8.8.8
+	nameserver 8.8.4.4
+
+5. sudo systemctl restart resolvconf.service && sudo systemctl restart systemd-resolved.service
+
+6. reboot
