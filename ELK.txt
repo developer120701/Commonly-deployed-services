@@ -1,0 +1,70 @@
+Cài JDK, JVM: sudo apt install openjdk-11-jdk
+=========================================================================Lấy key và repo pb ELK 7.17.4============================================================================
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+sudo apt-get install apt-transport-https
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+
+====================================================================================Elasticsearch=================================================================================
+
+B1: sudo apt-get update && sudo apt-get install elasticsearch
+
+B2: sudo nano /etc/elasticsearch/elasticsearch.yml
+	cluster.name: ELK
+	node.name: node-1
+	network.host: 192.168.5.50
+	http.port: 9200
+	discovery.type: single-node
+	#discovery.seed_hosts: ["192.168.5.50", "192.168.5.51", "192.168.5.52"]
+	#cluster.initial_master_nodes: ["node-1", "node-2"]
+
+B3: sudo nano /etc/elasticsearch/jvm.options
+	-Xms512m
+	-Xmx512m
+
+B4: Khởi động dịch vụ Elasticsearch
+	sudo systemctl daemon-reload
+	sudo systemctl enable elasticsearch.service
+	sudo systemctl start elasticsearch.service
+
+========================================================================================Kibana====================================================================================
+
+B1: sudo apt-get install kibana
+
+B2: sudo nano /etc/kibana/kibana.yml
+	server.port: 5601
+	server.host: "192.168.5.50"
+	server.publicBaseUrl: "http://192.168.5.50:5601"
+	elasticsearch.hosts: ["http://192.168.5.50:9200"]
+
+B3: Khởi động dịch vụ Kibana
+	sudo systemctl enable kibana.service
+	sudo systemctl start kibana.service
+check log: tail -f /var/log/kibana/kibana.log
+======================================================================================Logstash====================================================================================
+
+B1: sudo apt-get install logstash
+
+B2: sudo nano /etc/logstash/conf.d/02-beats-input.conf
+input {
+  beats {
+    host => "0.0.0.0"
+    port => 5044
+  }
+}
+
+B3: sudo nano /etc/logstash/conf.d/30-elasticsearch-output.conf
+output {
+  elasticsearch {
+    hosts => ["http://192.168.5.50:9200"]
+    manage_template => false
+    index => "%{[fields][type]}-%{+yyyy.MM.dd}"
+  }
+}
+
+B4: Check xem config có lỗi không
+	sudo -u logstash /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t
+
+B5: Khởi động dịch vụ Logstash
+	sudo systemctl enable logstash.service
+	sudo systemctl start logstash.service
